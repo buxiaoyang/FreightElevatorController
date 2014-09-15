@@ -25,7 +25,7 @@ void exint0() interrupt 0           //(location at 0003H)
 	{
 		if(currentlySignalNum>0)
 		{
-			currentlySignalNum --;
+			currentlySignalNum ++;
 		}
 	}
 	else
