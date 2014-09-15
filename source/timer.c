@@ -19,8 +19,6 @@ typedef unsigned int WORD;
 #define T1MS (65536-FOSC/12/1000)   //1ms timer calculation method in 12T mode
 #endif
 
-/* define SFR */
-sfr AUXR = 0x8e;                    //Auxiliary register
 
 /* define variables */
 WORD count;                         //1000 times counter
@@ -32,18 +30,10 @@ void tm0_isr() interrupt 1 using 1
 {
     TL0 = T1MS;                     //reload timer0 low byte
     TH0 = T1MS >> 8;                //reload timer0 high byte
-    if (count-- == 0)               //1ms * 1000 -> 1s
+    if (count-- == 0)               //10ms
     {
         count = 9;               //reset counter
-        TestOut = ! TestOut;   
-		if(KeyAutoManual == 1)
-		{
-			runMode = 1;
-		}
-		else
-		{
-			runMode = 0;
-		} 
+        //TestOut = ! TestOut;
 		Key_Scan();
     }
 }

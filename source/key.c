@@ -18,13 +18,13 @@ void Key_Scan(void)
 	switch(Key_Scan_Steps)
 	{
 		case 0:
-			if(KeyStart == 0 || KeyStop == 0 || KeyHydClam == 0)
+			if(sensorButton1 == 1 || sensorButton2 == 1)
 			{
 			   	Key_Scan_Steps = 1;
 			}
 		break;
 		case 1:
-			if(KeyStart == 0 || KeyStop == 0 || KeyHydClam == 0)
+			if(sensorButton1 == 1 || sensorButton2 == 1)
 			{
 			   	Key_Scan_Steps = 2;
 			}
@@ -34,32 +34,17 @@ void Key_Scan(void)
 			}
 		break;
 		case 2:
-			if(KeyStart == 0)
+			if(sensorButton1 == 1) //一楼按钮
 			{
-				if(runMode)
-				{
-					powerMode = 1;
-					ManiDispatchSteps = 0;
-				}
-			   	//cistern[7].cisternStatus = Ready;
-				//displayFlag = 1;
+				
 			}
-			if(KeyStop == 0)
-			{
-				powerMode = 0;	
-			}
-			if(KeyHydClam == 0)
-			{
-				//液压钳输出
-				if(!runMode) //手动状态
-				{
-					
-				}	
+			if(sensorButton2 == 1) //二楼按钮
+			{	
 			}
 			Key_Scan_Steps = 3;
 		break;
 		case 3:
-			if(KeyStart == 1 && KeyStop == 1 && KeyHydClam == 1)
+			if(sensorButton1 == 0 && sensorButton2 == 0)
 			{
 			   	Key_Scan_Steps = 0;
 			}

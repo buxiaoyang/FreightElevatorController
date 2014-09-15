@@ -14,72 +14,35 @@
 #define __PARAMETER_H__
 
 #include <reg52.h>
-
+// 扩展内存口
+sfr AUXR = 0x8e;
+sfr P4 = 0xE8;
 /***************************************************************************/
 // 引脚定义
 /***************************************************************************/
-//输入
-sbit EncoderCounting		= P3^2;  	// 编码器计数（绿色）
-
-sbit EncoderDirection		= P2^4;  	// 编码器方向（白色）
-
-sbit HydClamInductorTop		= P0^0;  	// 液压剪刀上方感应器(系统在工作之前，根据液压剪刀是否在上的位置（常亮）
-										// 来判定是否可以正常工作。)
-
-sbit HydClamInductorBottom	= P0^1;  	// 液压剪刀下方感应器
-
-sbit KeyStart				= P0^2;  	// 启动按钮，启动按钮只有在自动状态下才有效，启动之后，电机开始输出，
-										// 单片机开始接收编码器信号。
-
-sbit KeyAutoManual			= P0^3;  	// 手动状态下，启动按钮、系统停止按钮无效，编码器接收信号无效。
-										// 自动状态下 ，液压剪刀按钮无效。（高电平自动，低电平手动）
-
-sbit KeyStop				= P0^4;  	// 停止按钮
-
-sbit KeyHydClam				= P0^5;  	// 液压剪刀按钮，只有下手动状态下才有效。
-
-//输出
-sbit MotorForwardFast  		= P1^5;  //	电机前进快速
-sbit MotorBackFast  		= P1^6;  // 电机后退快速
-sbit MotorForwardSlow  		= P1^0;  //	电机前进慢速
-sbit MotorBackSlow  		= P1^1;  //	电机后退慢速
-sbit HydClamOut  			= P1^4;  //	液压剪刀输出
-sbit TestOut		  		= P2^7;  //	测试输出
-
-
-/***************************************************************************/
-// 参数定义
-/***************************************************************************/
-struct Board  //板材结构体
-{
-	unsigned int boardLength;   //板材长度
-	unsigned int boardNumber;	//板材数量
-};
-
-
-/***************************************************************************/
-// 参数声明
-/***************************************************************************/
-void parameter_init();
-unsigned char parameter_save();
-
-extern unsigned int powerMode; //启动
-extern unsigned int runMode; //运行模式
-extern struct Board parameterBoard[4];	//板材参数
-
-extern unsigned int sysParm1_SignalNumPerMeter; //系统参数一：一米距离编码器的信号数
-extern unsigned int sysParm2_ErrorCorrectionValue; //系统参数二：误差修正值，信号数
-extern unsigned int sysParm3; //系统参数三
-extern unsigned int sysParm4; //系统参数四
-extern unsigned int sysParm5; //系统参数五
-
-extern unsigned int settingBoardLength; //设定长度
-extern unsigned int settingBoardNumber; //设定块数
-
-extern unsigned int currentlyBoardLength; //已做长度
-extern unsigned int currentlyBoardNumber; //已做块数
-
-extern unsigned long currentlySignalNum; //当前编码器信号数
-extern unsigned long maxSignalNum;	  //最大编码器信号数
+//Input Signal									   			 
+sbit sensorFloor1 = P3^2;        // 线头：101     1层状态感应器	       X0
+sbit sensorFloor2 = P3^3;        // 线头：102     2层状态感应器		   X1
+sbit sensorDoortop = P0^2;       // 线头：KMW   1.2层门上部感应器	   X2
+sbit sensorDoorbelow = P0^3;     // 线头：GMW   1.2层门下部感应器 	   X3
+sbit sensorLimit  = P0^4;         // 线头：SWX    2层限位开关		   X4	
+sbit sensorButton1 = P0^5;        // 线头：301      1.2层面板数字1按钮  X5
+sbit sensorButton2  = P0^6;       // 线头：302      1.2层面板数字2按钮  X6
+sbit sensorF2 = P4^0;             // 线头：F2      假如油泵工作，此信号处于没有输出状态 X11
+sbit sensorEmergency = P0^7;      // 线头;JT        假如有高电位输入，全部输出停止工作            X7
+//Output Signal 
+sbit Dooropen = P4^2;             //激活卷门开门输出         Y0
+sbit Doorclose = P4^3;            //激活卷门关门输出         Y1
+sbit Doorfloor1   = P3^4;         //一楼卷门激活             Y2
+sbit Doorfloor2 = P3^5;	          //二楼卷门激活             Y3
+sbit BoxUp   = P3^6;              //油泵电梯轿厢向上推       Y4
+sbit Boxdown = P3^7;              //油泵电梯轿厢向下推       Y5
+//================================================
+sbit ledDS151  = P2^0;            //电梯指示灯1              Y6
+sbit ledDS152 = P2^1;             //电梯指示灯2              Y7
+sbit ledS  = P2^2;                //指示灯 箭头向上      	 Y10
+sbit ledX = P2^3;                 //指示灯 箭头向下	     	 Y11
+sbit Led601  = P2^4;              //指示灯按钮①             Y12
+sbit Led602 = P2^5;               //指示灯按钮②             Y13
 
 #endif
