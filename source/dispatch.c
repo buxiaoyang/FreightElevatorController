@@ -13,7 +13,7 @@ unsigned int SubDispatchGo2FloorTimer = 0;
 
 void checkSensor()
 {
-	if(sensorLimit == 0 || sensorEmergency == 1 || SensorStop == 0 || sensor402 == 0)
+	if(sensorLimit == 1 || sensorEmergency == 0 || SensorStop == 1 || sensor402 == 1)
 	{
 		ManiDispatchSteps = 0;	
 	}
@@ -85,7 +85,7 @@ void SubDispatchGo1Floor(void)
 			}
 		break;
 		case 2:	
-			if(sensorDoorbelow == 1)
+			if(sensorDoorbelow == 0)
 			{
 				DoorClose = 1;
 				DoorFloor2 = 1;
@@ -103,7 +103,7 @@ void SubDispatchGo1Floor(void)
 			}
 		break;
 		case 4:	
-			if(sensorFloor1 == 1)
+			if(sensorFloor1 == 0)
 			{
 				BoxDown = 1;
 				ledDS151  = 0; //打开1层指示灯
@@ -121,7 +121,7 @@ void SubDispatchGo1Floor(void)
 			}
 		break;
 		case 6:	
-			if(sensorDoortop == 0)
+			if(sensorDoortop == 1)
 			{
 				DoorOpen = 1;
 				DoorFloor1 = 1;
@@ -159,7 +159,7 @@ void SubDispatchGo2Floor(void)
 			}
 		break;
 		case 2:	
-			if(sensorDoorbelow == 1)
+			if(sensorDoorbelow == 0)
 			{
 				DoorClose = 1;
 				DoorFloor1 = 1;
@@ -177,7 +177,7 @@ void SubDispatchGo2Floor(void)
 			}
 		break;
 		case 4:	
-			if(sensorFloor2 == 1)
+			if(sensorFloor2 == 0)
 			{
 				BoxUp = 1;
 				ledDS152 = 0; //打开2层指示灯
@@ -195,7 +195,7 @@ void SubDispatchGo2Floor(void)
 			}
 		break;
 		case 6:	
-			if(sensorDoortop == 0)
+			if(sensorDoortop == 1)
 			{
 				DoorOpen = 1;
 				DoorFloor2 = 1;

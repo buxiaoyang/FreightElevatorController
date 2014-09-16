@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -23,7 +23,7 @@ line level    source
   13          
   14          void checkSensor()
   15          {
-  16   1              if(sensorLimit == 0 || sensorEmergency == 1 || SensorStop == 0 || sensor402 == 0)
+  16   1              if(sensorLimit == 1 || sensorEmergency == 0 || SensorStop == 1 || sensor402 == 1)
   17   1              {
   18   2                      ManiDispatchSteps = 0;  
   19   2              }
@@ -62,7 +62,7 @@ line level    source
   52   2                      break;
   53   2                      case 4:
   54   2                              if(SubDispatchGo2FloorSteps == 0)
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 2   
 
   55   2                              {
   56   3                                      ManiDispatchSteps = 0;
@@ -97,7 +97,7 @@ line level    source
   85   3                              }
   86   2                      break;
   87   2                      case 2: 
-  88   2                              if(sensorDoorbelow == 1)
+  88   2                              if(sensorDoorbelow == 0)
   89   2                              {
   90   3                                      DoorClose = 1;
   91   3                                      DoorFloor2 = 1;
@@ -115,7 +115,7 @@ line level    source
  103   3                              }
  104   2                      break;
  105   2                      case 4: 
- 106   2                              if(sensorFloor1 == 1)
+ 106   2                              if(sensorFloor1 == 0)
  107   2                              {
  108   3                                      BoxDown = 1;
  109   3                                      ledDS151  = 0; //打开1层指示灯
@@ -126,7 +126,7 @@ line level    source
  114   2                      break;
  115   2                      case 5: 
  116   2                              if(SubDispatchGo1FloorTimer > 100)
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 3   
 
  117   2                              {
  118   3                                      DoorOpen = 0;
@@ -135,7 +135,7 @@ line level    source
  121   3                              }
  122   2                      break;
  123   2                      case 6: 
- 124   2                              if(sensorDoortop == 0)
+ 124   2                              if(sensorDoortop == 1)
  125   2                              {
  126   3                                      DoorOpen = 1;
  127   3                                      DoorFloor1 = 1;
@@ -173,7 +173,7 @@ line level    source
  159   3                              }
  160   2                      break;
  161   2                      case 2: 
- 162   2                              if(sensorDoorbelow == 1)
+ 162   2                              if(sensorDoorbelow == 0)
  163   2                              {
  164   3                                      DoorClose = 1;
  165   3                                      DoorFloor1 = 1;
@@ -190,10 +190,10 @@ line level    source
  176   3                                      SubDispatchGo2FloorSteps ++;
  177   3                              }
  178   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 4   
 
  179   2                      case 4: 
- 180   2                              if(sensorFloor2 == 1)
+ 180   2                              if(sensorFloor2 == 0)
  181   2                              {
  182   3                                      BoxUp = 1;
  183   3                                      ledDS152 = 0; //打开2层指示灯
@@ -211,7 +211,7 @@ line level    source
  195   3                              }
  196   2                      break;
  197   2                      case 6: 
- 198   2                              if(sensorDoortop == 0)
+ 198   2                              if(sensorDoortop == 1)
  199   2                              {
  200   3                                      DoorOpen = 1;
  201   3                                      DoorFloor2 = 1;

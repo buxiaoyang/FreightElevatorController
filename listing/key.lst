@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   KEY                                                                   09/16/2014 22:52:21 PAGE 1   
+C51 COMPILER V7.50   KEY                                                                   09/16/2014 22:58:27 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE KEY
@@ -28,13 +28,13 @@ line level    source
   18   1              switch(Key_Scan_Steps)
   19   1              {
   20   2                      case 0:
-  21   2                              if(sensorButton1 == 1 || sensorButton2 == 1)
+  21   2                              if(sensorButton1 == 0 || sensorButton2 == 0)
   22   2                              {
   23   3                                      Key_Scan_Steps = 1;
   24   3                              }
   25   2                      break;
   26   2                      case 1:
-  27   2                              if(sensorButton1 == 1 || sensorButton2 == 1)
+  27   2                              if(sensorButton1 == 0 || sensorButton2 == 0)
   28   2                              {
   29   3                                      Key_Scan_Steps = 2;
   30   3                              }
@@ -44,25 +44,25 @@ line level    source
   34   3                              }
   35   2                      break;
   36   2                      case 2:
-  37   2                              if(sensorButton1 == 1) //一楼按钮
+  37   2                              if(sensorButton1 == 0) //一楼按钮
   38   2                              {
   39   3                                      ManiDispatchSteps = 1;
   40   3                              }
-  41   2                              if(sensorButton2 == 1) //二楼按钮
+  41   2                              if(sensorButton2 == 0) //二楼按钮
   42   2                              {       
   43   3                                      ManiDispatchSteps = 3;
   44   3                              }
   45   2                              Key_Scan_Steps = 3;
   46   2                      break;
   47   2                      case 3:
-  48   2                              if(sensorButton1 == 0 && sensorButton2 == 0)
+  48   2                              if(sensorButton1 == 1 && sensorButton2 == 1)
   49   2                              {
   50   3                                      Key_Scan_Steps = 0;
   51   3                              }
   52   2                      break;
   53   2                      default:
   54   2                               _nop_();
-C51 COMPILER V7.50   KEY                                                                   09/16/2014 22:52:21 PAGE 2   
+C51 COMPILER V7.50   KEY                                                                   09/16/2014 22:58:27 PAGE 2   
 
   55   2              }
   56   1      }
