@@ -4,7 +4,8 @@
 ".\output\eeprom.obj",
 ".\output\timer.obj",
 ".\output\key.obj",
-".\output\dispatch.obj" 
+".\output\dispatch.obj",
+".\output\parameter.obj" 
 TO ".\output\FreightElevatorController" 
 PRINT(".\listing\FreightElevatorController.m51") RAMSIZE(256) 
 XDATA( 0X0000-0X03FE )

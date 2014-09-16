@@ -3,6 +3,7 @@
 #include <intrins.h>
 #include <parameter.h>
 #include <key.h>
+#include <dispatch.h>
 
 typedef unsigned char BYTE;
 typedef unsigned int WORD;
@@ -33,8 +34,11 @@ void tm0_isr() interrupt 1 using 1
     if (count-- == 0)               //10ms
     {
         count = 9;               //reset counter
+		SubDispatchGo1FloorTimer ++;
+		SubDispatchGo2FloorTimer ++;
         //TestOut = ! TestOut;
 		Key_Scan();
+		checkSensor();
     }
 }
 

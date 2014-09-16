@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   PARAMETER                                                             09/15/2014 22:19:31 PAGE 1   
+C51 COMPILER V7.50   PARAMETER                                                             09/16/2014 21:47:55 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE PARAMETER
@@ -23,89 +23,54 @@ line level    source
   13          #include <parameter.h>
   14          #include <eeprom.h>
   15          
-  16          /***************************************************************************/
-  17          // 参数定义     
-  18          /***************************************************************************/
-  19          unsigned int powerMode; //启动状态 0关闭 1启动
-  20          unsigned int runMode; //运行模式 0手动模式 1自动模式
-  21          struct Board parameterBoard[4]; //板材参数
-  22          
-  23          unsigned int sysParm1_SignalNumPerMeter; //系统参数一：一米距离编码器的信号数
-  24          unsigned int sysParm2_ErrorCorrectionValue; //系统参数二：误差修正值，信号数
-  25          unsigned int sysParm3; //系统参数三
-  26          unsigned int sysParm4; //系统参数四
-  27          unsigned int sysParm5; //系统参数五
-  28          
-  29          unsigned int settingBoardLength; //设定长度
-  30          unsigned int settingBoardNumber; //设定块数
-  31          
-  32          unsigned int currentlyBoardLength; //已做长度
-  33          unsigned int currentlyBoardNumber; //已做块数
-  34          
-  35          unsigned long currentlySignalNum; //当前编码器信号数
-  36          unsigned long maxSignalNum;       //最大编码器信号数
-  37          
-  38          /***************************************************************************/
-  39          // 读取参数
-  40          // 参数：无
-  41          // 返回值：0失败 1成功  
-  42          /***************************************************************************/
-  43          unsigned char parameter_read()
-  44          {
-  45   1              unsigned char result = 1;
-  46   1              return result;
-  47   1      }
-  48          
-  49          /***************************************************************************/
-  50          // 参数初始化函数
-  51          // 参数：无
-  52          // 返回值：无   
-  53          /***************************************************************************/
-  54          void parameter_init()
-C51 COMPILER V7.50   PARAMETER                                                             09/15/2014 22:19:31 PAGE 2   
+  16          
+  17          /***************************************************************************/
+  18          // 参数初始化函数
+  19          // 参数：无
+  20          // 返回值：无   
+  21          /***************************************************************************/
+  22          void IO_init()
+  23          {
+  24   1              DoorOpen = 0;             //激活卷门开门输出         Y0
+  25   1              DoorClose = 0;            //激活卷门关门输出         Y1
+  26   1              DoorFloor1 = 0;         //一楼卷门激活             Y2
+  27   1              DoorFloor2 = 0;           //二楼卷门激活             Y3
+  28   1              BoxUp   = 0;              //油泵电梯轿厢向上推       Y4
+  29   1              BoxDown = 0;              //油泵电梯轿厢向下推       Y5
+  30   1              
+  31   1              if(sensorFloor1)
+  32   1              {
+  33   2                      ledDS151  = 1;            //电梯指示灯1              Y6
+  34   2              }
+  35   1              else
+  36   1              {
+  37   2                      ledDS151  = 0;  
+  38   2              }
+  39   1              
+  40   1              if(sensorFloor2)
+  41   1              {
+  42   2                      ledDS152 = 1;             //电梯指示灯2              Y7
+  43   2              }
+  44   1              else
+  45   1              {
+  46   2                      ledDS152 = 0;
+  47   2              }
+  48   1              ledS  = 0;                //指示灯 箭头向上              Y10
+  49   1              ledX = 0;                 //指示灯 箭头向下              Y11
+  50   1              Led601  = 0;              //指示灯按钮①             Y12
+  51   1              Led602 = 0;               //指示灯按钮②             Y13
+  52   1      }
+  53          
+  54          
+C51 COMPILER V7.50   PARAMETER                                                             09/16/2014 21:47:55 PAGE 2   
 
-  55          {
-  56   1              powerMode = 0;  //启动状态 0关闭 1启动
-  57   1              runMode = 0;
-  58   1      
-  59   1              sysParm1_SignalNumPerMeter =  1000;
-  60   1              sysParm2_ErrorCorrectionValue = 100;
-  61   1              sysParm3 = 0;
-  62   1              sysParm4 = 0;
-  63   1              sysParm5 = 0;
-  64   1              parameterBoard[0].boardLength = 0;
-  65   1              parameterBoard[0].boardNumber = 0;
-  66   1              parameterBoard[1].boardLength = 0;
-  67   1              parameterBoard[1].boardNumber = 0;
-  68   1              parameterBoard[2].boardLength = 0;
-  69   1              parameterBoard[2].boardNumber = 0;
-  70   1              parameterBoard[3].boardLength = 0;
-  71   1              parameterBoard[3].boardNumber = 0;
-  72   1              settingBoardLength = 0;
-  73   1              settingBoardNumber = 0;
-  74   1              currentlyBoardLength = 0;
-  75   1              currentlyBoardNumber = 0;
-  76   1              currentlySignalNum = 0;
-  77   1      }
-  78          
-  79          /***************************************************************************/
-  80          // 参数保存到eeprom
-  81          // 参数：无
-  82          // 返回值：0失败 1成功  
-  83          /***************************************************************************/
-  84          unsigned char parameter_save()
-  85          {
-  86   1              unsigned char result = 1;
-  87   1              return result;
-  88   1      }
-  89          
-  90          
+  55          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    120    ----
+   CODE SIZE        =     39    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =     46    ----
+   XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

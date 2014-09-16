@@ -2,8 +2,10 @@
 #define 		__DISPATCH_H__
 
 extern unsigned char ManiDispatchSteps;
+extern unsigned int SubDispatchGo1FloorTimer;
+extern unsigned int SubDispatchGo2FloorTimer;
 
-void ManiDispatch(void);
-void SubDispatch(void);	
+void ManiDispatch(void);	
+void checkSensor(void);
 
 #endif

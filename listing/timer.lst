@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 09/15/2014 23:26:51 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 09/16/2014 21:47:55 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -13,65 +13,69 @@ line level    source
    3          #include <intrins.h>
    4          #include <parameter.h>
    5          #include <key.h>
-   6          
-   7          typedef unsigned char BYTE;
-   8          typedef unsigned int WORD;
-   9          
-  10          //-----------------------------------------------
-  11          
-  12          /* define constants */
-  13          #define FOSC 11059200L
-  14          #define MODE1T                      //Timer clock mode, comment this line is 12T mode, uncomment is 1T mod
+   6          #include <dispatch.h>
+   7          
+   8          typedef unsigned char BYTE;
+   9          typedef unsigned int WORD;
+  10          
+  11          //-----------------------------------------------
+  12          
+  13          /* define constants */
+  14          #define FOSC 11059200L
+  15          #define MODE1T                      //Timer clock mode, comment this line is 12T mode, uncomment is 1T mod
              -e
-  15          
-  16          #ifdef MODE1T
-  17          #define T1MS (65536-FOSC/1000)      //1ms timer calculation method in 1T mode
-  18          #else
+  16          
+  17          #ifdef MODE1T
+  18          #define T1MS (65536-FOSC/1000)      //1ms timer calculation method in 1T mode
+  19          #else
               #define T1MS (65536-FOSC/12/1000)   //1ms timer calculation method in 12T mode
               #endif
-  21          
   22          
-  23          /* define variables */
-  24          WORD count;                         //1000 times counter
-  25          
-  26          //-----------------------------------------------
-  27          
-  28          /* Timer0 interrupt routine */
-  29          void tm0_isr() interrupt 1 using 1
-  30          {
-  31   1          TL0 = T1MS;                     //reload timer0 low byte
-  32   1          TH0 = T1MS >> 8;                //reload timer0 high byte
-  33   1          if (count-- == 0)               //10ms
-  34   1          {
-  35   2              count = 9;               //reset counter
-  36   2              //TestOut = ! TestOut;
-  37   2                      Key_Scan();
-  38   2          }
-  39   1      }
-  40          
-  41          //-----------------------------------------------
-  42          
-  43          /* main program */
-  44          void timer_init()
-  45          {
-  46   1      #ifdef MODE1T
-  47   1          AUXR = 0x80;                    //timer0 work in 1T mode
-  48   1      #endif
-  49   1          TMOD = 0x01;                    //set timer0 as mode1 (16-bit)
-  50   1          TL0 = T1MS;                     //initial timer0 low byte
-  51   1          TH0 = T1MS >> 8;                //initial timer0 high byte
-  52   1          TR0 = 1;                        //timer0 start running
-  53   1          ET0 = 1;                        //enable timer0 interrupt
-C51 COMPILER V7.50   TIMER                                                                 09/15/2014 23:26:51 PAGE 2   
+  23          
+  24          /* define variables */
+  25          WORD count;                         //1000 times counter
+  26          
+  27          //-----------------------------------------------
+  28          
+  29          /* Timer0 interrupt routine */
+  30          void tm0_isr() interrupt 1 using 1
+  31          {
+  32   1          TL0 = T1MS;                     //reload timer0 low byte
+  33   1          TH0 = T1MS >> 8;                //reload timer0 high byte
+  34   1          if (count-- == 0)               //10ms
+  35   1          {
+  36   2              count = 9;               //reset counter
+  37   2                      SubDispatchGo1FloorTimer ++;
+  38   2                      SubDispatchGo2FloorTimer ++;
+  39   2              //TestOut = ! TestOut;
+  40   2                      Key_Scan();
+  41   2                      checkSensor();
+  42   2          }
+  43   1      }
+  44          
+  45          //-----------------------------------------------
+  46          
+  47          /* main program */
+  48          void timer_init()
+  49          {
+  50   1      #ifdef MODE1T
+  51   1          AUXR = 0x80;                    //timer0 work in 1T mode
+  52   1      #endif
+  53   1          TMOD = 0x01;                    //set timer0 as mode1 (16-bit)
+C51 COMPILER V7.50   TIMER                                                                 09/16/2014 21:47:55 PAGE 2   
 
-  54   1          EA = 1;                         //open global interrupt switch
-  55   1          count = 0;                      //initial counter
-  56   1      }
-  57          
+  54   1          TL0 = T1MS;                     //initial timer0 low byte
+  55   1          TH0 = T1MS >> 8;                //initial timer0 high byte
+  56   1          TR0 = 1;                        //timer0 start running
+  57   1          ET0 = 1;                        //enable timer0 interrupt
+  58   1          EA = 1;                         //open global interrupt switch
+  59   1          count = 0;                      //initial counter
+  60   1      }
+  61          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     81    ----
+   CODE SIZE        =    112    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      2    ----
    PDATA SIZE       =   ----    ----

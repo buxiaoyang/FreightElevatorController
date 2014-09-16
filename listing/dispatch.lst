@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/15/2014 23:26:52 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -13,47 +13,222 @@ line level    source
    3          #include <intrins.h>
    4          #include <dispatch.h>
    5          
-   6          unsigned char ManiDispatchSteps = 20;
+   6          unsigned char ManiDispatchSteps = 0;
    7          
-   8          unsigned char SubDispatchSteps = 20;    
-   9          
+   8          unsigned char SubDispatchGo1FloorSteps = 0;     
+   9          unsigned char SubDispatchGo2FloorSteps = 0;
   10          
-  11          void ManiDispatch(void)
-  12          {
-  13   1              switch(ManiDispatchSteps)
-  14   1              {
-  15   2                      case 0: 
-  16   2                              
-  17   2                      break;
-  18   2                      case 1:
-  19   2                              
-  20   2                      break;
-  21   2                      default:
-  22   2                               _nop_();
-  23   2              }
-  24   1      }
-  25          
+  11          unsigned int SubDispatchGo1FloorTimer = 0;
+  12          unsigned int SubDispatchGo2FloorTimer = 0;
+  13          
+  14          void checkSensor()
+  15          {
+  16   1              if(sensorLimit == 0 || sensorEmergency == 1 || SensorStop == 0 || sensor402 == 0)
+  17   1              {
+  18   2                      ManiDispatchSteps = 0;  
+  19   2              }
+  20   1      }
+  21          
+  22          /*主调度程序*/
+  23          // 0    空操作，
+  24          // 1    电梯厢到1楼
+  25          // 3    电梯厢到2楼
   26          
-  27          void SubDispatch(void)
+  27          void ManiDispatch(void)
   28          {
-  29   1              switch(SubDispatchSteps)
-  30   1              {
-  31   2                      case 0: 
-  32   2                              
-  33   2                      break;
-  34   2                      case 1: 
-  35   2                      
+  29   1              checkSensor();
+  30   1              switch(ManiDispatchSteps)
+  31   1              {
+  32   2                      case 0: 
+  33   2                              IO_init();
+  34   2                              SubDispatchGo1FloorSteps = 0;
+  35   2                              SubDispatchGo2FloorSteps = 0;   
   36   2                      break;
-  37   2                      default:
-  38   2                               _nop_();
-  39   2              }
-  40   1      }
+  37   2                      case 1:
+  38   2                              SubDispatchGo1FloorSteps = 1;
+  39   2                              Led601 = 1;     //一楼按钮指示灯；
+  40   2                              ManiDispatchSteps ++;
+  41   2                      break;
+  42   2                      case 2:
+  43   2                              if(SubDispatchGo1FloorSteps == 0)
+  44   2                              {
+  45   3                                      ManiDispatchSteps = 0;  
+  46   3                              }
+  47   2                      break;
+  48   2                      case 3:
+  49   2                              SubDispatchGo2FloorSteps = 1;
+  50   2                              Led602 = 1;     //二楼按钮指示灯
+  51   2                              ManiDispatchSteps ++;
+  52   2                      break;
+  53   2                      case 4:
+  54   2                              if(SubDispatchGo2FloorSteps == 0)
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 2   
+
+  55   2                              {
+  56   3                                      ManiDispatchSteps = 0;
+  57   3                              }
+  58   2                      break;
+  59   2                      default:
+  60   2                               _nop_();
+  61   2              }
+  62   1      }
+  63          
+  64          /*电梯厢到一楼调度程序*/
+  65          // 0    空操作，调度未开始
+  66          // 1    延迟一定时间,关闭2楼电梯门
+  67          // 2    门关闭之后，延迟一段时间
+  68          // 3    延迟时间到，电梯厢向下
+  69          // 4    电梯厢到一楼，延迟一段时间
+  70          // 5    延迟时间到，打开1楼电梯门
+  71          // 6    门打开之后，操作完成
+  72          void SubDispatchGo1Floor(void)
+  73          {
+  74   1              switch(SubDispatchGo1FloorSteps)
+  75   1              {
+  76   2                      case 0: 
+  77   2                              SubDispatchGo1FloorTimer = 0;
+  78   2                      break;
+  79   2                      case 1: 
+  80   2                              if(SubDispatchGo1FloorTimer > 100)
+  81   2                              {
+  82   3                                      DoorClose = 1;
+  83   3                                      DoorFloor2 = 1;
+  84   3                                      SubDispatchGo1FloorSteps ++;
+  85   3                              }
+  86   2                      break;
+  87   2                      case 2: 
+  88   2                              if(sensorDoorbelow == 1)
+  89   2                              {
+  90   3                                      DoorClose = 0;
+  91   3                                      DoorFloor2 = 0;
+  92   3                                      SubDispatchGo1FloorTimer = 0;
+  93   3                                      SubDispatchGo1FloorSteps ++;
+  94   3                              }
+  95   2                      break;
+  96   2                      case 3: 
+  97   2                              if(SubDispatchGo1FloorTimer > 100)
+  98   2                              {
+  99   3                                      BoxDown = 1;
+ 100   3                                      ledDS152 = 0; //关闭2层指示灯
+ 101   3                                      ledX = 1;  //电梯向下指示灯
+ 102   3                                      SubDispatchGo1FloorSteps ++;
+ 103   3                              }
+ 104   2                      break;
+ 105   2                      case 4: 
+ 106   2                              if(sensorFloor1 == 1)
+ 107   2                              {
+ 108   3                                      BoxDown = 0;
+ 109   3                                      ledDS151  = 1; //打开1层指示灯
+ 110   3                                      ledX = 0;  //电梯向下指示灯
+ 111   3                                      SubDispatchGo1FloorTimer = 0;
+ 112   3                                      SubDispatchGo1FloorSteps ++;
+ 113   3                              }
+ 114   2                      break;
+ 115   2                      case 5: 
+ 116   2                              if(SubDispatchGo1FloorTimer > 100)
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 3   
+
+ 117   2                              {
+ 118   3                                      DoorOpen = 1;
+ 119   3                                      DoorFloor1 = 1;
+ 120   3                                      SubDispatchGo1FloorSteps ++;
+ 121   3                              }
+ 122   2                      break;
+ 123   2                      case 6: 
+ 124   2                              if(sensorDoortop == 0)
+ 125   2                              {
+ 126   3                                      DoorOpen = 0;
+ 127   3                                      DoorFloor1 = 0;
+ 128   3                                      SubDispatchGo1FloorSteps = 0;
+ 129   3                              }
+ 130   2                      break;
+ 131   2                      default:
+ 132   2                               _nop_();
+ 133   2              }
+ 134   1      }
+ 135          
+ 136          
+ 137          /*电梯厢到二楼调度程序*/
+ 138          // 0    空操作，调度未开始
+ 139          // 1    延迟一定时间,关闭1楼电梯门
+ 140          // 2    门关闭之后，延迟一段时间
+ 141          // 3    延迟时间到，电梯厢向上
+ 142          // 4    电梯厢到二楼，延迟一段时间
+ 143          // 5    延迟时间到，打开2楼电梯门
+ 144          // 6    门打开之后，操作完成
+ 145          
+ 146          void SubDispatchGo2Floor(void)
+ 147          {
+ 148   1              switch(SubDispatchGo2FloorSteps)
+ 149   1              {
+ 150   2                      case 0: 
+ 151   2                              SubDispatchGo2FloorTimer = 0;
+ 152   2                      break;
+ 153   2                      case 1: 
+ 154   2                              if(SubDispatchGo2FloorTimer > 100)
+ 155   2                              {
+ 156   3                                      DoorClose = 1;
+ 157   3                                      DoorFloor1 = 1;
+ 158   3                                      SubDispatchGo2FloorSteps ++;
+ 159   3                              }
+ 160   2                      break;
+ 161   2                      case 2: 
+ 162   2                              if(sensorDoorbelow == 1)
+ 163   2                              {
+ 164   3                                      DoorClose = 0;
+ 165   3                                      DoorFloor1 = 0;
+ 166   3                                      SubDispatchGo2FloorTimer = 0;
+ 167   3                                      SubDispatchGo2FloorSteps ++;
+ 168   3                              }
+ 169   2                      break;
+ 170   2                      case 3: 
+ 171   2                              if(SubDispatchGo2FloorTimer > 100)
+ 172   2                              {
+ 173   3                                      BoxUp = 1;
+ 174   3                                      ledDS151  = 0; //关闭1层指示灯
+ 175   3                                      ledS  = 1; //向上指示灯
+ 176   3                                      SubDispatchGo2FloorSteps ++;
+ 177   3                              }
+ 178   2                      break;
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 4   
+
+ 179   2                      case 4: 
+ 180   2                              if(sensorFloor2 == 1)
+ 181   2                              {
+ 182   3                                      BoxUp = 0;
+ 183   3                                      ledDS152 = 1; //打开2层指示灯
+ 184   3                                      ledS  = 0; //向上指示灯
+ 185   3                                      SubDispatchGo2FloorTimer = 0;
+ 186   3                                      SubDispatchGo2FloorSteps ++;
+ 187   3                              }
+ 188   2                      break;
+ 189   2                      case 5: 
+ 190   2                              if(SubDispatchGo2FloorTimer > 100)
+ 191   2                              {
+ 192   3                                      DoorOpen = 1;
+ 193   3                                      DoorFloor2 = 1;
+ 194   3                                      SubDispatchGo2FloorSteps ++;
+ 195   3                              }
+ 196   2                      break;
+ 197   2                      case 6: 
+ 198   2                              if(sensorDoortop == 0)
+ 199   2                              {
+ 200   3                                      DoorOpen = 0;
+ 201   3                                      DoorFloor2 = 0;
+ 202   3                                      SubDispatchGo2FloorSteps = 0;
+ 203   3                              }
+ 204   2                      break;
+ 205   2                      default:
+ 206   2                               _nop_();
+ 207   2              }
+ 208   1      }
+ 209          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     26    ----
+   CODE SIZE        =    432    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =      2    ----
+   XDATA SIZE       =      7    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
