@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -46,7 +46,7 @@ line level    source
   36   2                      break;
   37   2                      case 1:
   38   2                              SubDispatchGo1FloorSteps = 1;
-  39   2                              Led601 = 1;     //一楼按钮指示灯；
+  39   2                              Led601 = 0;     //一楼按钮指示灯；
   40   2                              ManiDispatchSteps ++;
   41   2                      break;
   42   2                      case 2:
@@ -57,12 +57,12 @@ line level    source
   47   2                      break;
   48   2                      case 3:
   49   2                              SubDispatchGo2FloorSteps = 1;
-  50   2                              Led602 = 1;     //二楼按钮指示灯
+  50   2                              Led602 = 0;     //二楼按钮指示灯
   51   2                              ManiDispatchSteps ++;
   52   2                      break;
   53   2                      case 4:
   54   2                              if(SubDispatchGo2FloorSteps == 0)
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 2   
 
   55   2                              {
   56   3                                      ManiDispatchSteps = 0;
@@ -91,16 +91,16 @@ line level    source
   79   2                      case 1: 
   80   2                              if(SubDispatchGo1FloorTimer > 100)
   81   2                              {
-  82   3                                      DoorClose = 1;
-  83   3                                      DoorFloor2 = 1;
+  82   3                                      DoorClose = 0;
+  83   3                                      DoorFloor2 = 0;
   84   3                                      SubDispatchGo1FloorSteps ++;
   85   3                              }
   86   2                      break;
   87   2                      case 2: 
   88   2                              if(sensorDoorbelow == 1)
   89   2                              {
-  90   3                                      DoorClose = 0;
-  91   3                                      DoorFloor2 = 0;
+  90   3                                      DoorClose = 1;
+  91   3                                      DoorFloor2 = 1;
   92   3                                      SubDispatchGo1FloorTimer = 0;
   93   3                                      SubDispatchGo1FloorSteps ++;
   94   3                              }
@@ -108,37 +108,37 @@ line level    source
   96   2                      case 3: 
   97   2                              if(SubDispatchGo1FloorTimer > 100)
   98   2                              {
-  99   3                                      BoxDown = 1;
- 100   3                                      ledDS152 = 0; //关闭2层指示灯
- 101   3                                      ledX = 1;  //电梯向下指示灯
+  99   3                                      BoxDown = 0;
+ 100   3                                      ledDS152 = 1; //关闭2层指示灯
+ 101   3                                      ledX = 0;  //电梯向下指示灯
  102   3                                      SubDispatchGo1FloorSteps ++;
  103   3                              }
  104   2                      break;
  105   2                      case 4: 
  106   2                              if(sensorFloor1 == 1)
  107   2                              {
- 108   3                                      BoxDown = 0;
- 109   3                                      ledDS151  = 1; //打开1层指示灯
- 110   3                                      ledX = 0;  //电梯向下指示灯
+ 108   3                                      BoxDown = 1;
+ 109   3                                      ledDS151  = 0; //打开1层指示灯
+ 110   3                                      ledX = 1;  //电梯向下指示灯
  111   3                                      SubDispatchGo1FloorTimer = 0;
  112   3                                      SubDispatchGo1FloorSteps ++;
  113   3                              }
  114   2                      break;
  115   2                      case 5: 
  116   2                              if(SubDispatchGo1FloorTimer > 100)
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 3   
 
  117   2                              {
- 118   3                                      DoorOpen = 1;
- 119   3                                      DoorFloor1 = 1;
+ 118   3                                      DoorOpen = 0;
+ 119   3                                      DoorFloor1 = 0;
  120   3                                      SubDispatchGo1FloorSteps ++;
  121   3                              }
  122   2                      break;
  123   2                      case 6: 
  124   2                              if(sensorDoortop == 0)
  125   2                              {
- 126   3                                      DoorOpen = 0;
- 127   3                                      DoorFloor1 = 0;
+ 126   3                                      DoorOpen = 1;
+ 127   3                                      DoorFloor1 = 1;
  128   3                                      SubDispatchGo1FloorSteps = 0;
  129   3                              }
  130   2                      break;
@@ -167,16 +167,16 @@ line level    source
  153   2                      case 1: 
  154   2                              if(SubDispatchGo2FloorTimer > 100)
  155   2                              {
- 156   3                                      DoorClose = 1;
- 157   3                                      DoorFloor1 = 1;
+ 156   3                                      DoorClose = 0;
+ 157   3                                      DoorFloor1 = 0;
  158   3                                      SubDispatchGo2FloorSteps ++;
  159   3                              }
  160   2                      break;
  161   2                      case 2: 
  162   2                              if(sensorDoorbelow == 1)
  163   2                              {
- 164   3                                      DoorClose = 0;
- 165   3                                      DoorFloor1 = 0;
+ 164   3                                      DoorClose = 1;
+ 165   3                                      DoorFloor1 = 1;
  166   3                                      SubDispatchGo2FloorTimer = 0;
  167   3                                      SubDispatchGo2FloorSteps ++;
  168   3                              }
@@ -184,20 +184,20 @@ line level    source
  170   2                      case 3: 
  171   2                              if(SubDispatchGo2FloorTimer > 100)
  172   2                              {
- 173   3                                      BoxUp = 1;
- 174   3                                      ledDS151  = 0; //关闭1层指示灯
- 175   3                                      ledS  = 1; //向上指示灯
+ 173   3                                      BoxUp = 0;
+ 174   3                                      ledDS151  = 1; //关闭1层指示灯
+ 175   3                                      ledS  = 0; //向上指示灯
  176   3                                      SubDispatchGo2FloorSteps ++;
  177   3                              }
  178   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 21:47:55 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:52:21 PAGE 4   
 
  179   2                      case 4: 
  180   2                              if(sensorFloor2 == 1)
  181   2                              {
- 182   3                                      BoxUp = 0;
- 183   3                                      ledDS152 = 1; //打开2层指示灯
- 184   3                                      ledS  = 0; //向上指示灯
+ 182   3                                      BoxUp = 1;
+ 183   3                                      ledDS152 = 0; //打开2层指示灯
+ 184   3                                      ledS  = 1; //向上指示灯
  185   3                                      SubDispatchGo2FloorTimer = 0;
  186   3                                      SubDispatchGo2FloorSteps ++;
  187   3                              }
@@ -205,16 +205,16 @@ line level    source
  189   2                      case 5: 
  190   2                              if(SubDispatchGo2FloorTimer > 100)
  191   2                              {
- 192   3                                      DoorOpen = 1;
- 193   3                                      DoorFloor2 = 1;
+ 192   3                                      DoorOpen = 0;
+ 193   3                                      DoorFloor2 = 0;
  194   3                                      SubDispatchGo2FloorSteps ++;
  195   3                              }
  196   2                      break;
  197   2                      case 6: 
  198   2                              if(sensorDoortop == 0)
  199   2                              {
- 200   3                                      DoorOpen = 0;
- 201   3                                      DoorFloor2 = 0;
+ 200   3                                      DoorOpen = 1;
+ 201   3                                      DoorFloor2 = 1;
  202   3                                      SubDispatchGo2FloorSteps = 0;
  203   3                              }
  204   2                      break;

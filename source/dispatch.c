@@ -36,7 +36,7 @@ void ManiDispatch(void)
 		break;
 		case 1:
 			SubDispatchGo1FloorSteps = 1;
-			Led601 = 1;	//一楼按钮指示灯；
+			Led601 = 0;	//一楼按钮指示灯；
 			ManiDispatchSteps ++;
 		break;
 		case 2:
@@ -47,7 +47,7 @@ void ManiDispatch(void)
 		break;
 		case 3:
 			SubDispatchGo2FloorSteps = 1;
-			Led602 = 1;	//二楼按钮指示灯
+			Led602 = 0;	//二楼按钮指示灯
 			ManiDispatchSteps ++;
 		break;
 		case 4:
@@ -79,16 +79,16 @@ void SubDispatchGo1Floor(void)
 		case 1:	
 			if(SubDispatchGo1FloorTimer > 100)
 			{
-				DoorClose = 1;
-				DoorFloor2 = 1;
+				DoorClose = 0;
+				DoorFloor2 = 0;
 				SubDispatchGo1FloorSteps ++;
 			}
 		break;
 		case 2:	
 			if(sensorDoorbelow == 1)
 			{
-				DoorClose = 0;
-				DoorFloor2 = 0;
+				DoorClose = 1;
+				DoorFloor2 = 1;
 				SubDispatchGo1FloorTimer = 0;
 				SubDispatchGo1FloorSteps ++;
 			}
@@ -96,18 +96,18 @@ void SubDispatchGo1Floor(void)
 		case 3:	
 			if(SubDispatchGo1FloorTimer > 100)
 			{
-				BoxDown = 1;
-				ledDS152 = 0; //关闭2层指示灯
-				ledX = 1;  //电梯向下指示灯
+				BoxDown = 0;
+				ledDS152 = 1; //关闭2层指示灯
+				ledX = 0;  //电梯向下指示灯
 				SubDispatchGo1FloorSteps ++;
 			}
 		break;
 		case 4:	
 			if(sensorFloor1 == 1)
 			{
-				BoxDown = 0;
-				ledDS151  = 1; //打开1层指示灯
-				ledX = 0;  //电梯向下指示灯
+				BoxDown = 1;
+				ledDS151  = 0; //打开1层指示灯
+				ledX = 1;  //电梯向下指示灯
 				SubDispatchGo1FloorTimer = 0;
 				SubDispatchGo1FloorSteps ++;
 			}
@@ -115,16 +115,16 @@ void SubDispatchGo1Floor(void)
 		case 5:	
 			if(SubDispatchGo1FloorTimer > 100)
 			{
-				DoorOpen = 1;
-				DoorFloor1 = 1;
+				DoorOpen = 0;
+				DoorFloor1 = 0;
 				SubDispatchGo1FloorSteps ++;
 			}
 		break;
 		case 6:	
 			if(sensorDoortop == 0)
 			{
-				DoorOpen = 0;
-				DoorFloor1 = 0;
+				DoorOpen = 1;
+				DoorFloor1 = 1;
 				SubDispatchGo1FloorSteps = 0;
 			}
 		break;
@@ -153,16 +153,16 @@ void SubDispatchGo2Floor(void)
 		case 1:	
 			if(SubDispatchGo2FloorTimer > 100)
 			{
-				DoorClose = 1;
-				DoorFloor1 = 1;
+				DoorClose = 0;
+				DoorFloor1 = 0;
 				SubDispatchGo2FloorSteps ++;
 			}
 		break;
 		case 2:	
 			if(sensorDoorbelow == 1)
 			{
-				DoorClose = 0;
-				DoorFloor1 = 0;
+				DoorClose = 1;
+				DoorFloor1 = 1;
 				SubDispatchGo2FloorTimer = 0;
 				SubDispatchGo2FloorSteps ++;
 			}
@@ -170,18 +170,18 @@ void SubDispatchGo2Floor(void)
 		case 3:	
 			if(SubDispatchGo2FloorTimer > 100)
 			{
-				BoxUp = 1;
-				ledDS151  = 0; //关闭1层指示灯
-				ledS  = 1; //向上指示灯
+				BoxUp = 0;
+				ledDS151  = 1; //关闭1层指示灯
+				ledS  = 0; //向上指示灯
 				SubDispatchGo2FloorSteps ++;
 			}
 		break;
 		case 4:	
 			if(sensorFloor2 == 1)
 			{
-				BoxUp = 0;
-				ledDS152 = 1; //打开2层指示灯
-				ledS  = 0; //向上指示灯
+				BoxUp = 1;
+				ledDS152 = 0; //打开2层指示灯
+				ledS  = 1; //向上指示灯
 				SubDispatchGo2FloorTimer = 0;
 				SubDispatchGo2FloorSteps ++;
 			}
@@ -189,16 +189,16 @@ void SubDispatchGo2Floor(void)
 		case 5:	
 			if(SubDispatchGo2FloorTimer > 100)
 			{
-				DoorOpen = 1;
-				DoorFloor2 = 1;
+				DoorOpen = 0;
+				DoorFloor2 = 0;
 				SubDispatchGo2FloorSteps ++;
 			}
 		break;
 		case 6:	
 			if(sensorDoortop == 0)
 			{
-				DoorOpen = 0;
-				DoorFloor2 = 0;
+				DoorOpen = 1;
+				DoorFloor2 = 1;
 				SubDispatchGo2FloorSteps = 0;
 			}
 		break;

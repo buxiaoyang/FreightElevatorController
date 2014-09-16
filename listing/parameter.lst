@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   PARAMETER                                                             09/16/2014 21:47:55 PAGE 1   
+C51 COMPILER V7.50   PARAMETER                                                             09/16/2014 22:52:21 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE PARAMETER
@@ -31,38 +31,38 @@ line level    source
   21          /***************************************************************************/
   22          void IO_init()
   23          {
-  24   1              DoorOpen = 0;             //激活卷门开门输出         Y0
-  25   1              DoorClose = 0;            //激活卷门关门输出         Y1
-  26   1              DoorFloor1 = 0;         //一楼卷门激活             Y2
-  27   1              DoorFloor2 = 0;           //二楼卷门激活             Y3
-  28   1              BoxUp   = 0;              //油泵电梯轿厢向上推       Y4
-  29   1              BoxDown = 0;              //油泵电梯轿厢向下推       Y5
+  24   1              DoorOpen = 1;             //激活卷门开门输出         Y0
+  25   1              DoorClose = 1;            //激活卷门关门输出         Y1
+  26   1              DoorFloor1 = 1;         //一楼卷门激活             Y2
+  27   1              DoorFloor2 = 1;           //二楼卷门激活             Y3
+  28   1              BoxUp   = 1;              //油泵电梯轿厢向上推       Y4
+  29   1              BoxDown = 1;              //油泵电梯轿厢向下推       Y5
   30   1              
   31   1              if(sensorFloor1)
   32   1              {
-  33   2                      ledDS151  = 1;            //电梯指示灯1              Y6
+  33   2                      ledDS151  = 0;            //电梯指示灯1              Y6
   34   2              }
   35   1              else
   36   1              {
-  37   2                      ledDS151  = 0;  
+  37   2                      ledDS151  = 1;  
   38   2              }
   39   1              
   40   1              if(sensorFloor2)
   41   1              {
-  42   2                      ledDS152 = 1;             //电梯指示灯2              Y7
+  42   2                      ledDS152 = 0;             //电梯指示灯2              Y7
   43   2              }
   44   1              else
   45   1              {
-  46   2                      ledDS152 = 0;
+  46   2                      ledDS152 = 1;
   47   2              }
-  48   1              ledS  = 0;                //指示灯 箭头向上              Y10
-  49   1              ledX = 0;                 //指示灯 箭头向下              Y11
-  50   1              Led601  = 0;              //指示灯按钮①             Y12
-  51   1              Led602 = 0;               //指示灯按钮②             Y13
+  48   1              ledS  = 1;                //指示灯 箭头向上              Y10
+  49   1              ledX = 1;                 //指示灯 箭头向下              Y11
+  50   1              Led601  = 1;              //指示灯按钮①             Y12
+  51   1              Led602 = 1;               //指示灯按钮②             Y13
   52   1      }
   53          
   54          
-C51 COMPILER V7.50   PARAMETER                                                             09/16/2014 21:47:55 PAGE 2   
+C51 COMPILER V7.50   PARAMETER                                                             09/16/2014 22:52:21 PAGE 2   
 
   55          
 

@@ -21,34 +21,34 @@
 /***************************************************************************/
 void IO_init()
 {
-	DoorOpen = 0;             //激活卷门开门输出         Y0
-	DoorClose = 0;            //激活卷门关门输出         Y1
-	DoorFloor1 = 0;         //一楼卷门激活             Y2
-	DoorFloor2 = 0;	          //二楼卷门激活             Y3
-	BoxUp   = 0;              //油泵电梯轿厢向上推       Y4
-	BoxDown = 0;              //油泵电梯轿厢向下推       Y5
+	DoorOpen = 1;             //激活卷门开门输出         Y0
+	DoorClose = 1;            //激活卷门关门输出         Y1
+	DoorFloor1 = 1;         //一楼卷门激活             Y2
+	DoorFloor2 = 1;	          //二楼卷门激活             Y3
+	BoxUp   = 1;              //油泵电梯轿厢向上推       Y4
+	BoxDown = 1;              //油泵电梯轿厢向下推       Y5
 	
 	if(sensorFloor1)
 	{
-		ledDS151  = 1;            //电梯指示灯1              Y6
+		ledDS151  = 0;            //电梯指示灯1              Y6
 	}
 	else
 	{
-		ledDS151  = 0;	
+		ledDS151  = 1;	
 	}
 	
 	if(sensorFloor2)
 	{
-		ledDS152 = 1;             //电梯指示灯2              Y7
+		ledDS152 = 0;             //电梯指示灯2              Y7
 	}
 	else
 	{
-		ledDS152 = 0;
+		ledDS152 = 1;
 	}
-	ledS  = 0;                //指示灯 箭头向上      	 Y10
-	ledX = 0;                 //指示灯 箭头向下	     	 Y11
-	Led601  = 0;              //指示灯按钮①             Y12
-	Led602 = 0;               //指示灯按钮②             Y13
+	ledS  = 1;                //指示灯 箭头向上      	 Y10
+	ledX = 1;                 //指示灯 箭头向下	     	 Y11
+	Led601  = 1;              //指示灯按钮①             Y12
+	Led602 = 1;               //指示灯按钮②             Y13
 }
 
 
