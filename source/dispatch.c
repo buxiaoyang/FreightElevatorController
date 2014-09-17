@@ -79,9 +79,17 @@ void SubDispatchGo1Floor(void)
 		case 1:	
 			if(SubDispatchGo1FloorTimer > 100)
 			{
-				DoorClose = 0;
-				DoorFloor2 = 0;
-				SubDispatchGo1FloorSteps ++;
+				if(sensorDoorbelow == 0)
+				{
+				   	SubDispatchGo1FloorTimer = 0;
+					SubDispatchGo1FloorSteps = 3;
+				}
+				else
+				{
+					DoorClose = 0;
+					DoorFloor2 = 0;
+					SubDispatchGo1FloorSteps ++;
+				}
 			}
 		break;
 		case 2:	
@@ -153,9 +161,17 @@ void SubDispatchGo2Floor(void)
 		case 1:	
 			if(SubDispatchGo2FloorTimer > 100)
 			{
-				DoorClose = 0;
-				DoorFloor1 = 0;
-				SubDispatchGo2FloorSteps ++;
+				if(sensorDoorbelow == 0)
+				{
+					SubDispatchGo2FloorTimer = 0;
+					SubDispatchGo2FloorSteps = 3;
+				}
+				else
+				{
+					DoorClose = 0;
+					DoorFloor1 = 0;
+					SubDispatchGo2FloorSteps ++;
+				}
 			}
 		break;
 		case 2:	
