@@ -31,15 +31,15 @@ void tm0_isr() interrupt 1 using 1
 {
     TL0 = T1MS;                     //reload timer0 low byte
     TH0 = T1MS >> 8;                //reload timer0 high byte
-    if (count-- == 0)               //10ms
-    {
-        count = 9;               //reset counter
+    //if (count-- == 0)               //10ms
+    //{
+    //    count = 9;               //reset counter
 		SubDispatchGo1FloorTimer ++;
 		SubDispatchGo2FloorTimer ++;
         //TestOut = ! TestOut;
 		Key_Scan();
 		checkSensor();
-    }
+    //}
 }
 
 //-----------------------------------------------

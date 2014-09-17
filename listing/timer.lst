@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   TIMER                                                                 09/17/2014 14:57:51 PAGE 1   
+C51 COMPILER V7.50   TIMER                                                                 09/17/2014 15:19:29 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE TIMER
@@ -42,15 +42,15 @@ line level    source
   31          {
   32   1          TL0 = T1MS;                     //reload timer0 low byte
   33   1          TH0 = T1MS >> 8;                //reload timer0 high byte
-  34   1          if (count-- == 0)               //10ms
-  35   1          {
-  36   2              count = 9;               //reset counter
-  37   2                      SubDispatchGo1FloorTimer ++;
-  38   2                      SubDispatchGo2FloorTimer ++;
-  39   2              //TestOut = ! TestOut;
-  40   2                      Key_Scan();
-  41   2                      checkSensor();
-  42   2          }
+  34   1          //if (count-- == 0)               //10ms
+  35   1          //{
+  36   1          //    count = 9;               //reset counter
+  37   1                      SubDispatchGo1FloorTimer ++;
+  38   1                      SubDispatchGo2FloorTimer ++;
+  39   1              //TestOut = ! TestOut;
+  40   1                      Key_Scan();
+  41   1                      checkSensor();
+  42   1          //}
   43   1      }
   44          
   45          //-----------------------------------------------
@@ -62,7 +62,7 @@ line level    source
   51   1          AUXR = 0x80;                    //timer0 work in 1T mode
   52   1      #endif
   53   1          TMOD = 0x01;                    //set timer0 as mode1 (16-bit)
-C51 COMPILER V7.50   TIMER                                                                 09/17/2014 14:57:51 PAGE 2   
+C51 COMPILER V7.50   TIMER                                                                 09/17/2014 15:19:29 PAGE 2   
 
   54   1          TL0 = T1MS;                     //initial timer0 low byte
   55   1          TH0 = T1MS >> 8;                //initial timer0 high byte
@@ -75,7 +75,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    112    ----
+   CODE SIZE        =     90    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      2    ----
    PDATA SIZE       =   ----    ----
