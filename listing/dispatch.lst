@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:19:29 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:25:04 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -21,7 +21,7 @@ line level    source
   11          unsigned int SubDispatchGo1FloorTimer = 0;
   12          unsigned int SubDispatchGo2FloorTimer = 0;
   13          
-  14          unsigned char delayTime = 10;
+  14          unsigned char delayTime = 100;
   15          
   16          void checkSensor()
   17          {
@@ -62,7 +62,7 @@ line level    source
   52   2                              Led602 = 0;     //二楼按钮指示灯
   53   2                              ManiDispatchSteps ++;
   54   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:19:29 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:25:04 PAGE 2   
 
   55   2                      case 4:
   56   2                              if(SubDispatchGo2FloorSteps == 0)
@@ -126,7 +126,7 @@ line level    source
  114   2                      break;
  115   2                      case 4: 
  116   2                              if(sensorFloor1 == 0)
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:19:29 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:25:04 PAGE 3   
 
  117   2                              {
  118   3                                      BoxDown = 1;
@@ -190,7 +190,7 @@ line level    source
  176   4                                      }
  177   3                              }
  178   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:19:29 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:25:04 PAGE 4   
 
  179   2                      case 2: 
  180   2                              if(sensorDoorbelow == 0)

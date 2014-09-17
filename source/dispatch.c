@@ -11,7 +11,7 @@ unsigned char SubDispatchGo2FloorSteps = 0;
 unsigned int SubDispatchGo1FloorTimer = 0;
 unsigned int SubDispatchGo2FloorTimer = 0;
 
-unsigned char delayTime = 10;
+unsigned char delayTime = 100;
 
 void checkSensor()
 {

@@ -36,11 +36,17 @@ void Key_Scan(void)
 		case 2:
 			if(sensorButton1 == 0) //一楼按钮
 			{
-				ManiDispatchSteps = 1;
+				if(ManiDispatchSteps == 0)
+				{
+					ManiDispatchSteps = 1;
+				}
 			}
 			if(sensorButton2 == 0) //二楼按钮
 			{	
-				ManiDispatchSteps = 3;
+				if(ManiDispatchSteps == 0)
+				{
+					ManiDispatchSteps = 3;
+				}
 			}
 			Key_Scan_Steps = 3;
 		break;

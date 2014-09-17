@@ -12,7 +12,7 @@ typedef unsigned int WORD;
 
 /* define constants */
 #define FOSC 11059200L
-#define MODE1T                      //Timer clock mode, comment this line is 12T mode, uncomment is 1T mode
+//#define MODE1T                      //Timer clock mode, comment this line is 12T mode, uncomment is 1T mode
 
 #ifdef MODE1T
 #define T1MS (65536-FOSC/1000)      //1ms timer calculation method in 1T mode
@@ -31,15 +31,15 @@ void tm0_isr() interrupt 1 using 1
 {
     TL0 = T1MS;                     //reload timer0 low byte
     TH0 = T1MS >> 8;                //reload timer0 high byte
-    //if (count-- == 0)               //10ms
-    //{
-    //    count = 9;               //reset counter
+    if (count-- == 0)               //10ms
+    {
+        count = 9;               //reset counter
 		SubDispatchGo1FloorTimer ++;
 		SubDispatchGo2FloorTimer ++;
         //TestOut = ! TestOut;
 		Key_Scan();
 		checkSensor();
-    //}
+    }
 }
 
 //-----------------------------------------------
