@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   MAIN                                                                  09/16/2014 22:58:26 PAGE 1   
+C51 COMPILER V7.50   MAIN                                                                  09/17/2014 14:51:15 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
@@ -39,20 +39,22 @@ line level    source
   29   1              while(1)
   30   1              {
   31   2                      ManiDispatch();
-  32   2              }   
-  33   1      }
-  34          
-  35          
+  32   2                      SubDispatchGo1Floor();
+  33   2                      SubDispatchGo2Floor();
+  34   2              }   
+  35   1      }
   36          
   37          
   38          
   39          
   40          
   41          
+  42          
+  43          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     11    ----
+   CODE SIZE        =     17    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
@@ -60,6 +62,8 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
+
+C51 COMPILER V7.50   MAIN                                                                  09/17/2014 14:51:15 PAGE 2   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

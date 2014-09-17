@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 14:51:16 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   2                      break;
   53   2                      case 4:
   54   2                              if(SubDispatchGo2FloorSteps == 0)
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 14:51:16 PAGE 2   
 
   55   2                              {
   56   3                                      ManiDispatchSteps = 0;
@@ -126,7 +126,7 @@ line level    source
  114   2                      break;
  115   2                      case 5: 
  116   2                              if(SubDispatchGo1FloorTimer > 100)
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 14:51:16 PAGE 3   
 
  117   2                              {
  118   3                                      DoorOpen = 0;
@@ -190,7 +190,7 @@ line level    source
  176   3                                      SubDispatchGo2FloorSteps ++;
  177   3                              }
  178   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/16/2014 22:58:27 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 14:51:16 PAGE 4   
 
  179   2                      case 4: 
  180   2                              if(sensorFloor2 == 0)

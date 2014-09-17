@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V5.12                                                        09/16/2014  22:58:27  PAGE 1
+BL51 BANKED LINKER/LOCATER V5.12                                                        09/17/2014  14:51:17  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V5.12, INVOKED BY:
@@ -59,14 +59,14 @@ LINK MAP OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
             CODE    037EH     0019H     UNIT         ?PR?_IAPPROGRAMBYTE?EEPROM
             CODE    0397H     0018H     UNIT         ?PR?_IAPREADBYTE?EEPROM
             CODE    03AFH     0016H     UNIT         ?C?LIB_CODE
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 2
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 2
 
 
             CODE    03C5H     0015H     UNIT         ?PR?_IAPERASESECTOR?EEPROM
             CODE    03DAH     0014H     UNIT         ?PR?_DELAY?EEPROM
             CODE    03EEH     0012H     UNIT         ?PR?CHECKSENSOR?DISPATCH
-            CODE    0400H     000DH     UNIT         ?PR?IAPIDLE?EEPROM
-            CODE    040DH     000BH     UNIT         ?PR?MAIN?MAIN
+            CODE    0400H     0011H     UNIT         ?PR?MAIN?MAIN
+            CODE    0411H     000DH     UNIT         ?PR?IAPIDLE?EEPROM
 
 
 
@@ -84,6 +84,8 @@ SEGMENT
   +--> ?PR?IO_INIT?PARAMETER
   +--> ?PR?TIMER_INIT?TIMER
   +--> ?PR?MANIDISPATCH?DISPATCH
+  +--> ?PR?SUBDISPATCHGO1FLOOR?DISPATCH
+  +--> ?PR?SUBDISPATCHGO2FLOOR?DISPATCH
 
 ?PR?MANIDISPATCH?DISPATCH
   +--> ?PR?CHECKSENSOR?DISPATCH
@@ -117,11 +119,11 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   N:0000H         SYMBOL        PBPSTACK
   N:0000H         SYMBOL        PBPSTACKTOP
   N:0000H         SYMBOL        PDATALEN
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 3
+
+
   N:0000H         SYMBOL        PDATASTART
   N:0000H         SYMBOL        PPAGE
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 3
-
-
   N:0000H         SYMBOL        PPAGEENABLE
   D:00A0H         SYMBOL        PPAGE_SFR
   D:0081H         SYMBOL        SP
@@ -148,20 +150,22 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   D:00E8H         PUBLIC        P4
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-  C:040DH         PUBLIC        main
+  C:0400H         PUBLIC        main
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:040DH         LINE#         25
-  C:040DH         LINE#         26
-  C:040DH         LINE#         27
-  C:0410H         LINE#         28
-  C:0413H         LINE#         29
-  C:0413H         LINE#         30
-  C:0413H         LINE#         31
-  C:0416H         LINE#         32
+  C:0400H         LINE#         25
+  C:0400H         LINE#         26
+  C:0400H         LINE#         27
+  C:0403H         LINE#         28
+  C:0406H         LINE#         29
+  C:0406H         LINE#         30
+  C:0406H         LINE#         31
+  C:0409H         LINE#         32
+  C:040CH         LINE#         33
+  C:040FH         LINE#         34
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -175,13 +179,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   X:0007H         SYMBOL        k
   -------         ENDDO         
   C:032EH         LINE#         20
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 4
+
+
   C:032EH         LINE#         21
   C:032EH         LINE#         23
   C:0338H         LINE#         24
   C:0338H         LINE#         25
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 4
-
-
   C:0346H         LINE#         26
   C:0348H         LINE#         27
   -------         ENDPROC       _DELAY_US
@@ -204,7 +208,7 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:00C5H         PUBLIC        IAP_CMD
   C:0397H         PUBLIC        _IapReadByte
-  C:0400H         PUBLIC        IapIdle
+  C:0411H         PUBLIC        IapIdle
   D:00C3H         PUBLIC        IAP_ADDRH
   D:00C4H         PUBLIC        IAP_ADDRL
   D:00C7H         PUBLIC        IAP_CONTR
@@ -228,20 +232,20 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   C:03EDH         LINE#         53
   -------         ENDPROC       _DELAY
   -------         PROC          IAPIDLE
-  C:0400H         LINE#         59
-  C:0400H         LINE#         60
-  C:0400H         LINE#         61
-  C:0403H         LINE#         62
-  C:0405H         LINE#         63
-  C:0407H         LINE#         64
-  C:040AH         LINE#         65
-  C:040CH         LINE#         66
+  C:0411H         LINE#         59
+  C:0411H         LINE#         60
+  C:0411H         LINE#         61
+  C:0414H         LINE#         62
+  C:0416H         LINE#         63
+  C:0418H         LINE#         64
+  C:041BH         LINE#         65
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 5
+
+
+  C:041DH         LINE#         66
   -------         ENDPROC       IAPIDLE
   -------         PROC          _IAPREADBYTE
   D:0006H         SYMBOL        addr
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 5
-
-
   -------         DO            
   D:0007H         SYMBOL        dat
   -------         ENDDO         
@@ -295,13 +299,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 6
+
+
   D:00E8H         PUBLIC        P4
   B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IE
   D:00B8H         PUBLIC        IP
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 6
-
-
   X:000BH         PUBLIC        count
   D:0098H         PUBLIC        SCON
   D:0089H         PUBLIC        TMOD
@@ -355,13 +359,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   D:00A8H         PUBLIC        IE
   C:023EH         PUBLIC        Key_Scan
   D:00B8H         PUBLIC        IP
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 7
+
+
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   B:0080H.5       PUBLIC        sensorButton1
   B:0080H.6       PUBLIC        sensorButton2
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 7
-
-
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          KEY_SCAN
@@ -415,13 +419,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   B:00A0H.2       PUBLIC        ledS
   B:0080H.2       PUBLIC        sensorDoortop
   D:00A8H         PUBLIC        IE
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 8
+
+
   B:00A0H.3       PUBLIC        ledX
   B:00E8H.3       PUBLIC        DoorClose
   D:00B8H         PUBLIC        IP
   B:0080H.4       PUBLIC        sensorLimit
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 8
-
-
   B:0090H.1       PUBLIC        SensorStop
   B:00E8H.2       PUBLIC        DoorOpen
   B:00A0H.4       PUBLIC        Led601
@@ -475,13 +479,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   C:02BAH         LINE#         40
   C:02BAH         LINE#         41
   C:02BCH         LINE#         42
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 9
+
+
   C:02BCH         LINE#         43
   C:02C2H         LINE#         44
   C:02C2H         LINE#         45
   C:02C2H         LINE#         46
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 9
-
-
   C:02C2H         LINE#         47
   C:02C4H         LINE#         48
   C:02C4H         LINE#         49
@@ -535,13 +539,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   C:0078H         LINE#         104
   C:007AH         LINE#         105
   C:007AH         LINE#         106
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 10
+
+
   C:007DH         LINE#         107
   C:007DH         LINE#         108
   C:007FH         LINE#         109
   C:0081H         LINE#         110
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 10
-
-
   C:0083H         LINE#         111
   C:008AH         LINE#         112
   C:008AH         LINE#         113
@@ -595,13 +599,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   C:010AH         LINE#         170
   C:010AH         LINE#         171
   C:0119H         LINE#         172
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 11
+
+
   C:0119H         LINE#         173
   C:011BH         LINE#         174
   C:011DH         LINE#         175
   C:011FH         LINE#         176
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 11
-
-
   C:011FH         LINE#         177
   C:011FH         LINE#         178
   C:0121H         LINE#         179
@@ -655,13 +659,13 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
   B:00A0H.5       PUBLIC        Led602
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 12
+
+
   B:00B0H.7       PUBLIC        BoxDown
   B:00B0H.4       PUBLIC        DoorFloor1
   B:00B0H.5       PUBLIC        DoorFloor2
   B:00B0H.2       PUBLIC        sensorFloor1
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 12
-
-
   B:00B0H.3       PUBLIC        sensorFloor2
   B:00A0H.0       PUBLIC        ledDS151
   B:00A0H.1       PUBLIC        ledDS152
@@ -715,17 +719,11 @@ SYMBOL TABLE OF MODULE:  .\output\FreightElevatorController (?C_STARTUP)
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_IAPPROGRAMBYTE?EEPROM
 
+BL51 BANKED LINKER/LOCATER V5.12                                                      09/17/2014  14:51:17  PAGE 13
+
+
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_IAPERASESECTOR?EEPROM
 
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-BL51 BANKED LINKER/LOCATER V5.12                                                      09/16/2014  22:58:27  PAGE 13
-
-
-    SEGMENT: ?PR?SUBDISPATCHGO1FLOOR?DISPATCH
-
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?SUBDISPATCHGO2FLOOR?DISPATCH
-
-Program Size: data=17.0 xdata=14 code=1040
-LINK/LOCATE RUN COMPLETE.  7 WARNING(S),  0 ERROR(S)
+Program Size: data=17.0 xdata=14 code=1046
+LINK/LOCATE RUN COMPLETE.  5 WARNING(S),  0 ERROR(S)

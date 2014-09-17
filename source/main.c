@@ -29,6 +29,8 @@ void main()
 	while(1)
 	{
 		ManiDispatch();
+		SubDispatchGo1Floor();
+		SubDispatchGo2Floor();
 	}   
 }
 
