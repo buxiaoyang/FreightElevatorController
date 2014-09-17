@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   KEY                                                                   09/17/2014 15:25:04 PAGE 1   
+C51 COMPILER V7.50   KEY                                                                   09/17/2014 15:48:49 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE KEY
@@ -62,7 +62,7 @@ line level    source
   52   2                      break;
   53   2                      case 3:
   54   2                              if(sensorButton1 == 1 && sensorButton2 == 1)
-C51 COMPILER V7.50   KEY                                                                   09/17/2014 15:25:04 PAGE 2   
+C51 COMPILER V7.50   KEY                                                                   09/17/2014 15:48:49 PAGE 2   
 
   55   2                              {
   56   3                                      Key_Scan_Steps = 0;
