@@ -81,16 +81,21 @@ void SubDispatchGo1Floor(void)
 		case 1:	
 			if(SubDispatchGo1FloorTimer > delayTime)
 			{
-				if(sensorDoorbelow == 0)
+				if(sensorFloor1 == 0)  //如果电梯厢在一楼
+				{
+				  	SubDispatchGo1FloorTimer = 0;
+					SubDispatchGo1FloorSteps = 5; //直接开一楼的门
+				}
+				else if(sensorDoorbelow == 0)  //如果电梯厢不在一楼并且1楼和2楼的门都是关闭的
 				{
 				   	SubDispatchGo1FloorTimer = 0;
-					SubDispatchGo1FloorSteps = 3;
+					SubDispatchGo1FloorSteps = 3;  //电梯直接去一楼
 				}
 				else
 				{
-					DoorClose = 0;
+					DoorClose = 0;				//先关二楼的门，再去一楼
 					DoorFloor2 = 0;
-					SubDispatchGo1FloorSteps ++;
+					SubDispatchGo1FloorSteps ++;  
 				}
 			}
 		break;
@@ -163,14 +168,19 @@ void SubDispatchGo2Floor(void)
 		case 1:	
 			if(SubDispatchGo2FloorTimer > delayTime)
 			{
-				if(sensorDoorbelow == 0)
+				if(sensorFloor2 == 0) //如果电梯厢在二楼
 				{
 					SubDispatchGo2FloorTimer = 0;
-					SubDispatchGo2FloorSteps = 3;
+					SubDispatchGo2FloorSteps = 5;//直接开二楼的门
+				}
+				else if(sensorDoorbelow == 0) //如果电梯厢不在二楼，并且1楼2楼门是关闭的
+				{
+					SubDispatchGo2FloorTimer = 0;
+					SubDispatchGo2FloorSteps = 3;  //电梯直接去二楼
 				}
 				else
 				{
-					DoorClose = 0;
+					DoorClose = 0;			  //先关一楼门再去二楼
 					DoorFloor1 = 0;
 					SubDispatchGo2FloorSteps ++;
 				}

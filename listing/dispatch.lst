@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:48:49 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   2                              Led602 = 0;     //二楼按钮指示灯
   53   2                              ManiDispatchSteps ++;
   54   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:48:49 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 2   
 
   55   2                      case 4:
   56   2                              if(SubDispatchGo2FloorSteps == 0)
@@ -93,158 +93,170 @@ line level    source
   81   2                      case 1: 
   82   2                              if(SubDispatchGo1FloorTimer > delayTime)
   83   2                              {
-  84   3                                      if(sensorDoorbelow == 0)
+  84   3                                      if(sensorFloor1 == 0)  //如果电梯厢在一楼
   85   3                                      {
   86   4                                              SubDispatchGo1FloorTimer = 0;
-  87   4                                              SubDispatchGo1FloorSteps = 3;
+  87   4                                              SubDispatchGo1FloorSteps = 5; //直接开一楼的门
   88   4                                      }
-  89   3                                      else
+  89   3                                      else if(sensorDoorbelow == 0)  //如果电梯厢不在一楼并且1楼和2楼的门都是关闭的
   90   3                                      {
-  91   4                                              DoorClose = 0;
-  92   4                                              DoorFloor2 = 0;
-  93   4                                              SubDispatchGo1FloorSteps ++;
-  94   4                                      }
-  95   3                              }
-  96   2                      break;
-  97   2                      case 2: 
-  98   2                              if(sensorDoorbelow == 0)
-  99   2                              {
- 100   3                                      DoorClose = 1;
- 101   3                                      DoorFloor2 = 1;
- 102   3                                      SubDispatchGo1FloorTimer = 0;
- 103   3                                      SubDispatchGo1FloorSteps ++;
- 104   3                              }
- 105   2                      break;
- 106   2                      case 3: 
- 107   2                              if(SubDispatchGo1FloorTimer > delayTime)
- 108   2                              {
- 109   3                                      BoxDown = 0;
- 110   3                                      ledDS152 = 1; //关闭2层指示灯
- 111   3                                      ledX = 0;  //电梯向下指示灯
- 112   3                                      SubDispatchGo1FloorSteps ++;
- 113   3                              }
- 114   2                      break;
- 115   2                      case 4: 
- 116   2                              if(sensorFloor1 == 0)
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:48:49 PAGE 3   
+  91   4                                              SubDispatchGo1FloorTimer = 0;
+  92   4                                              SubDispatchGo1FloorSteps = 3;  //电梯直接去一楼
+  93   4                                      }
+  94   3                                      else
+  95   3                                      {
+  96   4                                              DoorClose = 0;                          //先关二楼的门，再去一楼
+  97   4                                              DoorFloor2 = 0;
+  98   4                                              SubDispatchGo1FloorSteps ++;  
+  99   4                                      }
+ 100   3                              }
+ 101   2                      break;
+ 102   2                      case 2: 
+ 103   2                              if(sensorDoorbelow == 0)
+ 104   2                              {
+ 105   3                                      DoorClose = 1;
+ 106   3                                      DoorFloor2 = 1;
+ 107   3                                      SubDispatchGo1FloorTimer = 0;
+ 108   3                                      SubDispatchGo1FloorSteps ++;
+ 109   3                              }
+ 110   2                      break;
+ 111   2                      case 3: 
+ 112   2                              if(SubDispatchGo1FloorTimer > delayTime)
+ 113   2                              {
+ 114   3                                      BoxDown = 0;
+ 115   3                                      ledDS152 = 1; //关闭2层指示灯
+ 116   3                                      ledX = 0;  //电梯向下指示灯
+C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 3   
 
- 117   2                              {
- 118   3                                      BoxDown = 1;
- 119   3                                      ledDS151  = 0; //打开1层指示灯
- 120   3                                      ledX = 1;  //电梯向下指示灯
- 121   3                                      SubDispatchGo1FloorTimer = 0;
- 122   3                                      SubDispatchGo1FloorSteps ++;
- 123   3                              }
- 124   2                      break;
- 125   2                      case 5: 
- 126   2                              if(SubDispatchGo1FloorTimer > delayTime)
- 127   2                              {
- 128   3                                      DoorOpen = 0;
- 129   3                                      DoorFloor1 = 0;
- 130   3                                      SubDispatchGo1FloorSteps ++;
- 131   3                              }
- 132   2                      break;
- 133   2                      case 6: 
- 134   2                              if(sensorDoortop == 1)
- 135   2                              {
- 136   3                                      DoorOpen = 1;
- 137   3                                      DoorFloor1 = 1;
- 138   3                                      SubDispatchGo1FloorSteps = 0;
- 139   3                              }
- 140   2                      break;
- 141   2                      default:
- 142   2                               _nop_();
- 143   2              }
- 144   1      }
- 145          
- 146          
- 147          /*电梯厢到二楼调度程序*/
- 148          // 0    空操作，调度未开始
- 149          // 1    延迟一定时间,关闭1楼电梯门
- 150          // 2    门关闭之后，延迟一段时间
- 151          // 3    延迟时间到，电梯厢向上
- 152          // 4    电梯厢到二楼，延迟一段时间
- 153          // 5    延迟时间到，打开2楼电梯门
- 154          // 6    门打开之后，操作完成
- 155          
- 156          void SubDispatchGo2Floor(void)
- 157          {
- 158   1              switch(SubDispatchGo2FloorSteps)
- 159   1              {
- 160   2                      case 0: 
- 161   2                              SubDispatchGo2FloorTimer = 0;
- 162   2                      break;
- 163   2                      case 1: 
- 164   2                              if(SubDispatchGo2FloorTimer > delayTime)
- 165   2                              {
- 166   3                                      if(sensorDoorbelow == 0)
- 167   3                                      {
- 168   4                                              SubDispatchGo2FloorTimer = 0;
- 169   4                                              SubDispatchGo2FloorSteps = 3;
- 170   4                                      }
- 171   3                                      else
+ 117   3                                      SubDispatchGo1FloorSteps ++;
+ 118   3                              }
+ 119   2                      break;
+ 120   2                      case 4: 
+ 121   2                              if(sensorFloor1 == 0)
+ 122   2                              {
+ 123   3                                      BoxDown = 1;
+ 124   3                                      ledDS151  = 0; //打开1层指示灯
+ 125   3                                      ledX = 1;  //电梯向下指示灯
+ 126   3                                      SubDispatchGo1FloorTimer = 0;
+ 127   3                                      SubDispatchGo1FloorSteps ++;
+ 128   3                              }
+ 129   2                      break;
+ 130   2                      case 5: 
+ 131   2                              if(SubDispatchGo1FloorTimer > delayTime)
+ 132   2                              {
+ 133   3                                      DoorOpen = 0;
+ 134   3                                      DoorFloor1 = 0;
+ 135   3                                      SubDispatchGo1FloorSteps ++;
+ 136   3                              }
+ 137   2                      break;
+ 138   2                      case 6: 
+ 139   2                              if(sensorDoortop == 1)
+ 140   2                              {
+ 141   3                                      DoorOpen = 1;
+ 142   3                                      DoorFloor1 = 1;
+ 143   3                                      SubDispatchGo1FloorSteps = 0;
+ 144   3                              }
+ 145   2                      break;
+ 146   2                      default:
+ 147   2                               _nop_();
+ 148   2              }
+ 149   1      }
+ 150          
+ 151          
+ 152          /*电梯厢到二楼调度程序*/
+ 153          // 0    空操作，调度未开始
+ 154          // 1    延迟一定时间,关闭1楼电梯门
+ 155          // 2    门关闭之后，延迟一段时间
+ 156          // 3    延迟时间到，电梯厢向上
+ 157          // 4    电梯厢到二楼，延迟一段时间
+ 158          // 5    延迟时间到，打开2楼电梯门
+ 159          // 6    门打开之后，操作完成
+ 160          
+ 161          void SubDispatchGo2Floor(void)
+ 162          {
+ 163   1              switch(SubDispatchGo2FloorSteps)
+ 164   1              {
+ 165   2                      case 0: 
+ 166   2                              SubDispatchGo2FloorTimer = 0;
+ 167   2                      break;
+ 168   2                      case 1: 
+ 169   2                              if(SubDispatchGo2FloorTimer > delayTime)
+ 170   2                              {
+ 171   3                                      if(sensorFloor2 == 0) //如果电梯厢在二楼
  172   3                                      {
- 173   4                                              DoorClose = 0;
- 174   4                                              DoorFloor1 = 0;
- 175   4                                              SubDispatchGo2FloorSteps ++;
- 176   4                                      }
- 177   3                              }
- 178   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/17/2014 15:48:49 PAGE 4   
+ 173   4                                              SubDispatchGo2FloorTimer = 0;
+ 174   4                                              SubDispatchGo2FloorSteps = 5;//直接开二楼的门
+ 175   4                                      }
+ 176   3                                      else if(sensorDoorbelow == 0) //如果电梯厢不在二楼，并且1楼2楼门是关闭的
+ 177   3                                      {
+ 178   4                                              SubDispatchGo2FloorTimer = 0;
+C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 4   
 
- 179   2                      case 2: 
- 180   2                              if(sensorDoorbelow == 0)
- 181   2                              {
- 182   3                                      DoorClose = 1;
- 183   3                                      DoorFloor1 = 1;
- 184   3                                      SubDispatchGo2FloorTimer = 0;
- 185   3                                      SubDispatchGo2FloorSteps ++;
- 186   3                              }
- 187   2                      break;
- 188   2                      case 3: 
- 189   2                              if(SubDispatchGo2FloorTimer > delayTime)
- 190   2                              {
- 191   3                                      BoxUp = 0;
- 192   3                                      ledDS151  = 1; //关闭1层指示灯
- 193   3                                      ledS  = 0; //向上指示灯
- 194   3                                      SubDispatchGo2FloorSteps ++;
- 195   3                              }
- 196   2                      break;
- 197   2                      case 4: 
- 198   2                              if(sensorFloor2 == 0)
- 199   2                              {
- 200   3                                      BoxUp = 1;
- 201   3                                      ledDS152 = 0; //打开2层指示灯
- 202   3                                      ledS  = 1; //向上指示灯
- 203   3                                      SubDispatchGo2FloorTimer = 0;
+ 179   4                                              SubDispatchGo2FloorSteps = 3;  //电梯直接去二楼
+ 180   4                                      }
+ 181   3                                      else
+ 182   3                                      {
+ 183   4                                              DoorClose = 0;                    //先关一楼门再去二楼
+ 184   4                                              DoorFloor1 = 0;
+ 185   4                                              SubDispatchGo2FloorSteps ++;
+ 186   4                                      }
+ 187   3                              }
+ 188   2                      break;
+ 189   2                      case 2: 
+ 190   2                              if(sensorDoorbelow == 0)
+ 191   2                              {
+ 192   3                                      DoorClose = 1;
+ 193   3                                      DoorFloor1 = 1;
+ 194   3                                      SubDispatchGo2FloorTimer = 0;
+ 195   3                                      SubDispatchGo2FloorSteps ++;
+ 196   3                              }
+ 197   2                      break;
+ 198   2                      case 3: 
+ 199   2                              if(SubDispatchGo2FloorTimer > delayTime)
+ 200   2                              {
+ 201   3                                      BoxUp = 0;
+ 202   3                                      ledDS151  = 1; //关闭1层指示灯
+ 203   3                                      ledS  = 0; //向上指示灯
  204   3                                      SubDispatchGo2FloorSteps ++;
  205   3                              }
  206   2                      break;
- 207   2                      case 5: 
- 208   2                              if(SubDispatchGo2FloorTimer > delayTime)
+ 207   2                      case 4: 
+ 208   2                              if(sensorFloor2 == 0)
  209   2                              {
- 210   3                                      DoorOpen = 0;
- 211   3                                      DoorFloor2 = 0;
- 212   3                                      SubDispatchGo2FloorSteps ++;
- 213   3                              }
- 214   2                      break;
- 215   2                      case 6: 
- 216   2                              if(sensorDoortop == 1)
- 217   2                              {
- 218   3                                      DoorOpen = 1;
- 219   3                                      DoorFloor2 = 1;
- 220   3                                      SubDispatchGo2FloorSteps = 0;
- 221   3                              }
- 222   2                      break;
- 223   2                      default:
- 224   2                               _nop_();
- 225   2              }
- 226   1      }
- 227          
+ 210   3                                      BoxUp = 1;
+ 211   3                                      ledDS152 = 0; //打开2层指示灯
+ 212   3                                      ledS  = 1; //向上指示灯
+ 213   3                                      SubDispatchGo2FloorTimer = 0;
+ 214   3                                      SubDispatchGo2FloorSteps ++;
+ 215   3                              }
+ 216   2                      break;
+ 217   2                      case 5: 
+ 218   2                              if(SubDispatchGo2FloorTimer > delayTime)
+ 219   2                              {
+ 220   3                                      DoorOpen = 0;
+ 221   3                                      DoorFloor2 = 0;
+ 222   3                                      SubDispatchGo2FloorSteps ++;
+ 223   3                              }
+ 224   2                      break;
+ 225   2                      case 6: 
+ 226   2                              if(sensorDoortop == 1)
+ 227   2                              {
+ 228   3                                      DoorOpen = 1;
+ 229   3                                      DoorFloor2 = 1;
+ 230   3                                      SubDispatchGo2FloorSteps = 0;
+ 231   3                              }
+ 232   2                      break;
+ 233   2                      default:
+ 234   2                               _nop_();
+ 235   2              }
+ 236   1      }
+ 237          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    490    ----
+C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 5   
+
+   CODE SIZE        =    524    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      8    ----
    PDATA SIZE       =   ----    ----
