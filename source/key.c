@@ -18,13 +18,13 @@ void Key_Scan(void)
 	switch(Key_Scan_Steps)
 	{
 		case 0:
-			if(sensorButton1 == 0 || sensorButton2 == 0)
+			if(sensorF2Button1 == 0 || sensorF2Button2 == 0 || sensorF1Button1 == 0 || sensorF1Button2 == 0)
 			{
 			   	Key_Scan_Steps = 1;
 			}
 		break;
 		case 1:
-			if(sensorButton1 == 0 || sensorButton2 == 0)
+			if(sensorF2Button1 == 0 || sensorF2Button2 == 0 || sensorF1Button1 == 0 || sensorF1Button2 == 0)
 			{
 			   	Key_Scan_Steps = 2;
 			}
@@ -34,24 +34,38 @@ void Key_Scan(void)
 			}
 		break;
 		case 2:
-			if(sensorButton1 == 0) //Ò»Â¥°´Å¥
+			if(sensorF2Button1 == 0) //¶þ²ã Ò»Â¥°´Å¥
 			{
-				if(ManiDispatchSteps == 0)
+				if(ManiDispatchSteps == 0 && sensorFloor1 == 1)
 				{
-					ManiDispatchSteps = 1;
+					ManiDispatchSteps = 1; //µçÌÝÏáµ½1Â¥
 				}
 			}
-			if(sensorButton2 == 0) //¶þÂ¥°´Å¥
+			else if(sensorF2Button2 == 0 && sensorFloor1 == 1 ) //¶þ²ã ¶þÂ¥°´Å¥
 			{	
 				if(ManiDispatchSteps == 0)
 				{
-					ManiDispatchSteps = 3;
+					ManiDispatchSteps = 3; //µçÌÝÏáµ½2Â¥
+				}
+			}
+			else if(sensorF1Button1 == 0 && sensorFloor2 == 1) //Ò»²ã Ò»Â¥°´Å¥
+			{	
+				if(ManiDispatchSteps == 0)
+				{
+					ManiDispatchSteps = 1; //µçÌÝÏáµ½1Â¥
+				}
+			}
+			else if(sensorF1Button2 == 0 && sensorFloor2 == 1) //Ò»²ã ¶þÂ¥°´Å¥
+			{	
+				if(ManiDispatchSteps == 0)
+				{
+					ManiDispatchSteps = 3; //µçÌÝÏáµ½2Â¥
 				}
 			}
 			Key_Scan_Steps = 3;
 		break;
 		case 3:
-			if(sensorButton1 == 1 && sensorButton2 == 1)
+			if(sensorF2Button1 == 1 && sensorF2Button2 == 1 && sensorF1Button1 == 1 && sensorF1Button2 == 1)
 			{
 			   	Key_Scan_Steps = 0;
 			}

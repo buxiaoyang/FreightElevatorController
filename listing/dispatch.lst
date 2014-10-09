@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 1   
+C51 COMPILER V7.50   DISPATCH                                                              10/09/2014 17:05:55 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE DISPATCH
@@ -62,7 +62,7 @@ line level    source
   52   2                              Led602 = 0;     //二楼按钮指示灯
   53   2                              ManiDispatchSteps ++;
   54   2                      break;
-C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 2   
+C51 COMPILER V7.50   DISPATCH                                                              10/09/2014 17:05:55 PAGE 2   
 
   55   2                      case 4:
   56   2                              if(SubDispatchGo2FloorSteps == 0)
@@ -126,7 +126,7 @@ line level    source
  114   3                                      BoxDown = 0;
  115   3                                      ledDS152 = 1; //关闭2层指示灯
  116   3                                      ledX = 0;  //电梯向下指示灯
-C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 3   
+C51 COMPILER V7.50   DISPATCH                                                              10/09/2014 17:05:55 PAGE 3   
 
  117   3                                      SubDispatchGo1FloorSteps ++;
  118   3                              }
@@ -190,7 +190,7 @@ line level    source
  176   3                                      else if(sensorDoorbelow == 0) //如果电梯厢不在二楼，并且1楼2楼门是关闭的
  177   3                                      {
  178   4                                              SubDispatchGo2FloorTimer = 0;
-C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 4   
+C51 COMPILER V7.50   DISPATCH                                                              10/09/2014 17:05:55 PAGE 4   
 
  179   4                                              SubDispatchGo2FloorSteps = 3;  //电梯直接去二楼
  180   4                                      }
@@ -254,7 +254,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-C51 COMPILER V7.50   DISPATCH                                                              09/18/2014 23:12:09 PAGE 5   
+C51 COMPILER V7.50   DISPATCH                                                              10/09/2014 17:05:55 PAGE 5   
 
    CODE SIZE        =    524    ----
    CONSTANT SIZE    =   ----    ----

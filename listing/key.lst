@@ -1,4 +1,4 @@
-C51 COMPILER V7.50   KEY                                                                   09/18/2014 23:12:08 PAGE 1   
+C51 COMPILER V7.50   KEY                                                                   10/09/2014 17:05:55 PAGE 1   
 
 
 C51 COMPILER V7.50, COMPILATION OF MODULE KEY
@@ -28,13 +28,13 @@ line level    source
   18   1              switch(Key_Scan_Steps)
   19   1              {
   20   2                      case 0:
-  21   2                              if(sensorButton1 == 0 || sensorButton2 == 0)
+  21   2                              if(sensorF2Button1 == 0 || sensorF2Button2 == 0 || sensorF1Button1 == 0 || sensorF1Button2 == 0)
   22   2                              {
   23   3                                      Key_Scan_Steps = 1;
   24   3                              }
   25   2                      break;
   26   2                      case 1:
-  27   2                              if(sensorButton1 == 0 || sensorButton2 == 0)
+  27   2                              if(sensorF2Button1 == 0 || sensorF2Button2 == 0 || sensorF1Button1 == 0 || sensorF1Button2 == 0)
   28   2                              {
   29   3                                      Key_Scan_Steps = 2;
   30   3                              }
@@ -44,38 +44,52 @@ line level    source
   34   3                              }
   35   2                      break;
   36   2                      case 2:
-  37   2                              if(sensorButton1 == 0) //Ò»Â¥°´Å¥
+  37   2                              if(sensorF2Button1 == 0) //¶þ²ã Ò»Â¥°´Å¥
   38   2                              {
-  39   3                                      if(ManiDispatchSteps == 0)
+  39   3                                      if(ManiDispatchSteps == 0 && sensorFloor1 == 1)
   40   3                                      {
-  41   4                                              ManiDispatchSteps = 1;
+  41   4                                              ManiDispatchSteps = 1; //µçÌÝÏáµ½1Â¥
   42   4                                      }
   43   3                              }
-  44   2                              if(sensorButton2 == 0) //¶þÂ¥°´Å¥
+  44   2                              else if(sensorF2Button2 == 0 && sensorFloor1 == 1 ) //¶þ²ã ¶þÂ¥°´Å¥
   45   2                              {       
   46   3                                      if(ManiDispatchSteps == 0)
   47   3                                      {
-  48   4                                              ManiDispatchSteps = 3;
+  48   4                                              ManiDispatchSteps = 3; //µçÌÝÏáµ½2Â¥
   49   4                                      }
   50   3                              }
-  51   2                              Key_Scan_Steps = 3;
-  52   2                      break;
-  53   2                      case 3:
-  54   2                              if(sensorButton1 == 1 && sensorButton2 == 1)
-C51 COMPILER V7.50   KEY                                                                   09/18/2014 23:12:08 PAGE 2   
+  51   2                              else if(sensorF1Button1 == 0 && sensorFloor2 == 1) //Ò»²ã Ò»Â¥°´Å¥
+  52   2                              {       
+  53   3                                      if(ManiDispatchSteps == 0)
+  54   3                                      {
+C51 COMPILER V7.50   KEY                                                                   10/09/2014 17:05:55 PAGE 2   
 
-  55   2                              {
-  56   3                                      Key_Scan_Steps = 0;
+  55   4                                              ManiDispatchSteps = 1; //µçÌÝÏáµ½1Â¥
+  56   4                                      }
   57   3                              }
-  58   2                      break;
-  59   2                      default:
-  60   2                               _nop_();
-  61   2              }
-  62   1      }
+  58   2                              else if(sensorF1Button2 == 0 && sensorFloor2 == 1) //Ò»²ã ¶þÂ¥°´Å¥
+  59   2                              {       
+  60   3                                      if(ManiDispatchSteps == 0)
+  61   3                                      {
+  62   4                                              ManiDispatchSteps = 3; //µçÌÝÏáµ½2Â¥
+  63   4                                      }
+  64   3                              }
+  65   2                              Key_Scan_Steps = 3;
+  66   2                      break;
+  67   2                      case 3:
+  68   2                              if(sensorF2Button1 == 1 && sensorF2Button2 == 1 && sensorF1Button1 == 1 && sensorF1Button2 == 1)
+  69   2                              {
+  70   3                                      Key_Scan_Steps = 0;
+  71   3                              }
+  72   2                      break;
+  73   2                      default:
+  74   2                               _nop_();
+  75   2              }
+  76   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     87    ----
+   CODE SIZE        =    143    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      1    ----
    PDATA SIZE       =   ----    ----
